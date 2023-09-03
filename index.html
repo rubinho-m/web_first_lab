@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Лабораторная 1</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<div class="header">
+    <h2>Рубин Михаил Дмитриевич, P3211, Вариант 2104</h2>
+</div>
+<div class="wrapper">
+    <div class="left_column">
+        <form>
+            <div class="x_choose">
+                <p>Выберите значение x</p>
+                <p><label>
+                    <input name="x_button" value="-2" type="radio">
+                </label>-2</p>
+                <p><label>
+                    <input name="x_button" value="-1.5" type="radio">
+                </label>-1.5</p>
+                <p><label>
+                    <input name="x_button" value="-1" type="radio">
+                </label>-1</p>
+                <p><label>
+                    <input name="x_button" value="-0.5" type="radio">
+                </label>-0.5</p>
+                <p class="zero"><label>
+                    <input name="x_button" value="0" type="radio">
+                </label>0</p>
+                <p><label>
+                    <input name="x_button" value="0.5" type="radio">
+                </label>0.5</p>
+                <p><label>
+                    <input name="x_button" value="1" type="radio">
+                </label>1</p>
+                <p><label>
+                    <input name="x_button" value="1.5" type="radio">
+                </label>1.5</p>
+                <p><label>
+                    <input name="x_button" value="2" type="radio">
+                </label>2</p>
+            </div>
+            <div class="y_choose">
+                <label>
+                    Введите значение y <br>
+                    <input type="text" name="y_text" id="y_input" placeholder="-3..5">
+                </label>
+                <br>
+            </div>
+            <div class="r_choose">
+                <label>
+                    Выберите значение R <br>
+                    <select name="r_select" id="r_select">
+                        <option value="1">1</option>
+                        <option value="1.5">1.5</option>
+                        <option value="2">2</option>
+                        <option value="2.5">2.5</option>
+                        <option value="3">3</option>
+                    </select>
+                </label>
+            </div>
+        </form>
+
+        <p><input class="check" id="check_button" type="submit" value="Проверить"></p>
+
+
+    </div>
+
+    <div class="images">
+        <img id="lebron" src="images/lebron.png" alt="">
+        <table id="history_table">
+            <tr>
+                <th>x</th>
+                <th>y</th>
+                <th>R</th>
+                <th>Результат</th>
+                <th>Время</th>
+                <th>Время выполнения скрипта</th>
+            </tr>
+
+
+        </table>
+    </div>
+
+</div>
+</body>
+<script src="script.js"></script>
+</html>
