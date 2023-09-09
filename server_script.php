@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['x']) && isset($_POST[
         $x_ok = false;
         $y_ok = false;
         $R_ok = false;
+        $error = false;
 
         $x_values = [-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2];
         $R_values = [1, 1.5, 2, 2.5, 3];
@@ -46,17 +47,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['x']) && isset($_POST[
             $response .= "</td></tr>";
         } else {
             $response .= "The numbers are not in the range";
+            $error = true;
             header("HTTP/1.1 400 Bad Request");
             require("bad_request.html");
 
         }
     } else {
+        $error = true;
         $response .= "Only numbers are allowed";
         header("HTTP/1.1 400 Bad Request");
         require("bad_request.html");
 
     }
-    echo $response;
+    if (!$error) {
+        echo $response;
+    }
 
 
 }
@@ -64,30 +69,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['x']) && isset($_POST[
 
 function check($x, $y, $R): bool
 {
-    $flag = true;
-    if ($x > 0 && $y > 0) {
-        if (!($x <= $R && ($y <= $R))) {
-            $flag = false;
+    $flag = false;
+
+    if (($x >= 0) && ($y >= 0)) {
+        if (($x <= $R) && ($y <= $R)) {
+            $flag = true;
         }
-    } elseif ($x < 0 && $y < 0) {
-        if (!($x >= (-$R / 2) && $y >= (-$R / 2))) {
-            $flag = false;
+    } else if (($x <= 0) && ($y <= 0)) {
+        if (($x >= -$R / 2) && ($y >= -$R / 2)){
+            $flag = true;
         }
-    } elseif ($x < 0 && $y > 0) {
-        $flag = false;
-    } elseif ($x > 0 && $y < 0) {
-        if (!($x <= ($R / 2) && $y >= (-$R))) {
-            $flag = false;
+    } else if (($x >= 0) && ($y <= 0)) {
+        if (($x <= $R/2) && ($y >= -$R)){
+            $flag = true;
         }
-    } elseif ($x === 0 && $y !== 0) {
-        if (!($y >= -$R && $y <= $R)) {
-            $flag = false;
+    } else if ($x == 0){
+        if (($y >= -$R) && ($y <= $R)){
+            $flag = true;
         }
-    } elseif ($y === 0 && $x !== 0) {
-        if (!($y >= -$R / 2 && $y <= $R / 2)) {
-            $flag = false;
+    } else if ($y == 0){
+        if (($x >= -$R/2) && ($x <= $R)){
+            $flag = true;
         }
     }
+
     return $flag;
 }
 
