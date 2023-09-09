@@ -1,3 +1,9 @@
+document.addEventListener('DOMContentLoaded', function() {
+    reloadTable();
+});
+
+
+
 document.getElementById("check_button").addEventListener("click", function () {
     const x_arr = document.getElementsByName("x_button");
     const y = document.getElementById("y_input");
@@ -32,8 +38,15 @@ document.getElementById("check_button").addEventListener("click", function () {
             return response.text();
         })
             .then(data => {
-                document.getElementById("history_table").innerHTML += data;
-                console.log('Ответ от сервера:', data);
+                let table = localStorage.getItem("table");
+                if (table === null){
+                    localStorage.setItem("table", data);
+                } else {
+                    let rows = table.split(",");
+                    rows.push(data);
+                    localStorage.setItem("table", rows.join(","));
+                }
+                reloadTable();
             })
             .catch(error => {
                 console.error('Произошла ошибка:', error);
@@ -44,3 +57,26 @@ document.getElementById("check_button").addEventListener("click", function () {
 
 
 })
+
+
+function reloadTable(){
+    clearVisibleTable();
+    let table = document.getElementById("history_table");
+    let rows = localStorage.getItem("table").split(",");
+    rows.forEach(row => table.insertAdjacentHTML('beforeend', row));
+}
+
+function clearVisibleTable(){
+    let table = document.getElementById("history_table");
+
+    while (table.rows.length > 1) {
+        table.deleteRow(1);
+    }
+}
+
+function clearTable(){
+    localStorage.removeItem("table");
+    clearVisibleTable();
+}
+
+document.getElementById("clear_button").addEventListener("click", clearTable);

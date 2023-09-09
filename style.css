@@ -30,7 +30,7 @@
     background-color: #009A63;
     border: none;
     color: white;
-    margin-left: 20%;
+
     border-radius: 5px;
     font-size: 16px;
 
@@ -39,6 +39,14 @@
 
 .check:hover {
     background-color: #7FBF7F;
+}
+
+#check_button {
+    margin-left: 20%;
+}
+
+#clear_button {
+    margin-left: 45%;
 }
 
 #lebron {
@@ -86,6 +94,7 @@ p {
 
 table {
     font-size: 14px;
+    width: 100%;
     border-collapse: collapse;
     text-align: center;
 }
@@ -105,6 +114,7 @@ th, td {
 td {
     background: #D0F0C0;
 }
+
 
 th:first-child, td:first-child {
     text-align: left;
