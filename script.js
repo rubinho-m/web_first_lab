@@ -62,8 +62,12 @@ document.getElementById("check_button").addEventListener("click", function () {
 function reloadTable(){
     clearVisibleTable();
     let table = document.getElementById("history_table");
-    let rows = localStorage.getItem("table").split(",");
-    rows.forEach(row => table.insertAdjacentHTML('beforeend', row));
+    let tableStorage = localStorage.getItem("table");
+    if (tableStorage){
+        let rows = tableStorage.split(",");
+        rows.forEach(row => table.insertAdjacentHTML('beforeend', row));
+    }
+
 }
 
 function clearVisibleTable(){
