@@ -47,11 +47,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['x']) && isset($_POST[
         } else {
             $response .= "The numbers are not in the range";
             header("HTTP/1.1 400 Bad Request");
+            require("bad_request.html");
 
         }
     } else {
         $response .= "Only numbers are allowed";
         header("HTTP/1.1 400 Bad Request");
+        require("bad_request.html");
 
     }
     echo $response;

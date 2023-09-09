@@ -25,7 +25,16 @@
     flex: 4;
 }
 
-
+h1 {
+    text-align: center;
+    color: #009A63;
+    font-size: 72px;
+}
+.error-message {
+    font-size: 32px;
+    color: #009A63;
+    text-align: center;
+}
 .check {
     background-color: #009A63;
     border: none;
