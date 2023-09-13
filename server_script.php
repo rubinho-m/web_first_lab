@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['x']) && isset($_POST[
         $x_values = [-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2];
         $R_values = [1, 1.5, 2, 2.5, 3];
 
-        if (in_array($x, $x_values) && in_array($R, $R_values) && $y >= -3 && $y <= 5) {
+        if (in_array($x, $x_values) && in_array($R, $R_values) && $y > -3 && $y < 5) {
 
             if (check($x, $y, $R)) {
                 $answer = "true";

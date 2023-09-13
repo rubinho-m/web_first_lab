@@ -30,11 +30,13 @@ h1 {
     color: #009A63;
     font-size: 72px;
 }
+
 .error-message {
     font-size: 32px;
     color: #009A63;
     text-align: center;
 }
+
 .check {
     background-color: #009A63;
     border: none;
@@ -81,13 +83,15 @@ input {
     margin-right: 5px;
 }
 
+
+
 /*селектор атрибута*/
 
 input[type='text'] {
-    background-color: #009A63;
-    color: white;
+    color:white;
 }
-input[type='text']::placeholder{
+
+input[type='text']::placeholder {
     color: white;
 }
 
@@ -96,7 +100,7 @@ input[type='text']::placeholder{
 
 p.zero {
     font-weight: bold;
-    font-style: normal;
+    /*font-style берется от родителя, font-weight переопределяется большей важностью - каскадирование*/
 }
 
 p {
@@ -159,4 +163,11 @@ input[type='radio']:checked:after {
     display: inline-block;
     visibility: visible;
     border: 2px solid white;
+}
+
+.green-bg {
+    background-color: #009A63;
+}
+.red-bg {
+    background-color: red;
 }

@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     reloadTable();
+    y_choose_input.classList.add("green-bg");
 });
 
-
+let y_choose_input = document.getElementById("y_input");
 
 document.getElementById("check_button").addEventListener("click", function () {
     const x_arr = document.getElementsByName("x_button");
@@ -22,7 +23,7 @@ document.getElementById("check_button").addEventListener("click", function () {
     }
 
 
-    if (flag && !isNaN(x) && !isNaN(y.value) && y.value && y.value >= -3 && y.value <= 5) {
+    if (flag && !isNaN(x) && !isNaN(y.value) && y.value && y.value > -3 && y.value < 5) {
         let data = new FormData();
         data.append('x', x);
         data.append('y', y.value);
@@ -31,6 +32,10 @@ document.getElementById("check_button").addEventListener("click", function () {
             method: 'POST',
             body: data,
         };
+
+        y_choose_input.classList.remove("red-bg");
+        y_choose_input.classList.add("green-bg");
+
         fetch("server_script.php", options).then(response => {
             if (!response.ok) {
                 throw new Error('Ошибка HTTP ' + response.status);
@@ -52,7 +57,35 @@ document.getElementById("check_button").addEventListener("click", function () {
                 console.error('Произошла ошибка:', error);
             });
     } else {
-        alert("Некорректные данные!");
+        let error_text = "";
+        if (!flag){
+            error_text = "Нет значения x";
+        }
+
+        else if (!y.value){
+            error_text = "Нет значения y";
+            y_choose_input.classList.remove("green-bg");
+            y_choose_input.classList.add("red-bg");
+        } else if (y.value <= -3 || y.value >= 5){
+            error_text = "Неправильный диапазон y";
+            y_choose_input.classList.remove("green-bg");
+            y_choose_input.classList.add("red-bg");
+        } else {
+            error_text = "Значение y должно быть числом";
+            y_choose_input.classList.remove("green-bg");
+            y_choose_input.classList.add("red-bg");
+        }
+        Toastify({
+            text: error_text,
+            duration: 2000,
+            style: {
+                background: "red"
+            },
+            offset: {
+                x: 0,
+                y: 0
+            }
+        }).showToast();
     }
 
 
